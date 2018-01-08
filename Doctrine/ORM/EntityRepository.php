@@ -78,8 +78,12 @@ class EntityRepository extends BaseEntityRepository implements RepositoryInterfa
      *
      * @return array
      */
-    public function findBy(array $criteria, array $sorting = array(), $limit = null, $offset = null)
+    public function findBy(array $criteria, array $sorting = null, $limit = null, $offset = null)
     {
+        if (!$sorting) {
+            $sorting = [];
+        }
+
         $queryBuilder = $this->getCollectionQueryBuilder();
 
         $this->applyCriteria($queryBuilder, $criteria);
@@ -122,8 +126,16 @@ class EntityRepository extends BaseEntityRepository implements RepositoryInterfa
     /**
      * {@inheritdoc}
      */
-    public function createPaginator(array $criteria = array(), array $sorting = array())
+    public function createPaginator(array $criteria = null, array $sorting = null)
     {
+        // if (!$criteria) {
+        //     $criteria = [];
+        // }
+
+        // if (!$sorting) {
+        //     $sorting = [];
+        // }
+
         $queryBuilder = $this->getCollectionQueryBuilder();
 
         $this->applyCriteria($queryBuilder, $criteria);
