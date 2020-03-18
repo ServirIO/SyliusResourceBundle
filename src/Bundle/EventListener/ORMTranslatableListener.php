@@ -36,7 +36,7 @@ final class ORMTranslatableListener implements EventSubscriber
 
     public function __construct(
         RegistryInterface $resourceMetadataRegistry,
-        object $translatableEntityLocaleAssigner
+        $translatableEntityLocaleAssigner
     ) {
         $this->resourceMetadataRegistry = $resourceMetadataRegistry;
         $this->translatableEntityLocaleAssigner = $this->processTranslatableEntityLocaleAssigner($translatableEntityLocaleAssigner);
@@ -193,7 +193,7 @@ final class ORMTranslatableListener implements EventSubscriber
         return false;
     }
 
-    private function processTranslatableEntityLocaleAssigner(object $translatableEntityLocaleAssigner): TranslatableEntityLocaleAssignerInterface
+    private function processTranslatableEntityLocaleAssigner($translatableEntityLocaleAssigner): TranslatableEntityLocaleAssignerInterface
     {
         if ($translatableEntityLocaleAssigner instanceof ContainerInterface) {
             @trigger_error(
